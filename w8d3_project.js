@@ -108,7 +108,20 @@ const reader = readline.createInterface({
 function askIfGreaterThan(el1, el2, callback) {
   // Prompt user to tell us whether el1 > el2; pass true back to the
   // callback if true; else false.
+  reader.question(`Is ${el1} > ${el2}  ` , answer => {
+    if (answer.toLowerCase() === "yes") {
+        callback(true)
+    } else {
+        if (answer.toLowerCase() === "no") {
+        callback(false)
+        } else if (answer.toLowerCase() !== "yes" || answer.toLowerCase() !== "no") {
+            console.log("please write yes or no.")
+            askIfGreaterThan(el1, el2, callback)
+        }
+    }})
 }
+
+
 
 // Once you're done testing askIfGreaterThan with dummy arguments, write this.
 function innerBubbleSortLoop(arr, i, madeAnySwaps, outerBubbleSortLoop) {
@@ -133,7 +146,10 @@ function absurdBubbleSort(arr, sortCompletionCallback) {
   // Kick the first outer loop off, starting `madeAnySwaps` as true.
 }
 
-absurdBubbleSort([3, 2, 1], function(arr) {
-  console.log("Sorted array: " + JSON.stringify(arr));
-  reader.close();
-});
+// absurdBubbleSort([3, 2, 1], function(arr) {
+//   console.log("Sorted array: " + JSON.stringify(arr));
+//   reader.close();
+// });
+
+
+
